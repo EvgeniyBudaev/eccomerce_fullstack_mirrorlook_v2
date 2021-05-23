@@ -1,0 +1,1 @@
+export {FooterLogoAndSocial as default} from './FooterLogoAndSocial'

@@ -1,0 +1,31 @@
+.footerLogo svg {
+  cursor: pointer;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.socialIcon {
+  cursor: pointer;
+}
+
+.socialIcon + .socialIcon {
+  margin-left: 10px;
+}
+
+.socialIcon svg {
+  fill: var(--black);
+  transition: all 0.3s;
+}
+
+.socialIcon:hover svg {
+  fill: var(--beige);
+}
+
+@media (max-width: 1100px) {
+  .socialIcons {
+    justify-content: flex-start;
+  }
+}

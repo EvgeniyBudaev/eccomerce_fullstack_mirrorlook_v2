@@ -1,0 +1,59 @@
+# Форматирование кода
+# на mac option + command + L
+# на windows ctrl + alt + I
+
+Запуск виртуального окружения проекта В Windows:
+.\venv\Scripts\activate
+В macOS или Linux:
+source venv/bin/activate
+
+Остановка виртуального окружения
+deactivate
+
+pip list
+pip install virtualenv
+cls
+virtualenv myenv
+cls
+myenv\scripts\activate
+pip list
+pip install django
+django-admin startproject backend
+cd backend
+
+python manage.py runserver
+
+python manage.py startapp base
+django-rest-framework.org
+pip install djangorestframework
+
+python manage.py makemigrations
+python manage.py migrate
+
+python -m pip install django-cors-headers
+pip install django-filter
+
+
+python manage.py createsuperuser
+
+pip install pillow
+pip install djangorestframework-simplejwt
+
+python manage.py collectstatic
+
+
+# git commands
+rm -rf .git
+rm .gitignore
+ls -lha
+pwd
+cd Documents/CODE/FULLSTACK/eccomerce_fullstack_proshop/
+mv ecom_tmp/ frontend  # меняем название на папку frontend
+git add .
+git status
+
+pip freeze > requirements.txt
+При клонировании репозитория на другой компьютер или сервер выполните (предварительно создав и активировав нужное виртуальное окружение):
+pip install -r requirements.txt
+Таким образом, разом установятся все необходимые пакеты.
+
