@@ -3,15 +3,17 @@ import {useDispatch, useSelector} from "react-redux"
 import styles from './ProductList.module.scss'
 import {fetchProductsByCatalog} from "../../../../../redux/actions/productListAction"
 
-
 const ProductList = ({catalogSlug}) => {
     const dispatch = useDispatch()
-    const products = useSelector(state => state.productList)
-    console.log("products", products)
+    const productsList = useSelector(state => state.productList)
+    const {loading, loaded, error, products} = productsList
 
     useEffect(() => {
-        dispatch(fetchProductsByCatalog(catalogSlug))
-    }, [dispatch, catalogSlug])
+        if (!loading[catalogSlug] && !loaded[catalogSlug]) {
+            dispatch(fetchProductsByCatalog(catalogSlug))
+        }
+    }, [dispatch, catalogSlug, loading, loaded])
+    console.log("products", products)
 
     return (
       <ul className={styles.productList}>

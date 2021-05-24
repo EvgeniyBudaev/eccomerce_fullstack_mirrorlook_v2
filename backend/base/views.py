@@ -172,13 +172,16 @@ def get_products_by_category(request, categorySlug):
 @api_view(['GET'])
 def get_products_by_catalog(request, catalogSlug):
     catalog = None
+    productsAfterFilterTotal = []
     categories = Category.objects.all()
     products = Product.objects.all()
     if catalogSlug:
         catalog = Catalog.objects.get(catalogSlug=catalogSlug)
         categoriesAfterFilter = categories.filter(catalogId=catalog.id)
-        productsAfterFilter = products.filter(categoryId=categoriesAfterFilter.id)
-    serializer = ProductSerializer(productsAfterFilter, many=True)
+        for category in categoriesAfterFilter:
+            productsAfterFilter = products.filter(categoryId=category.id)
+            productsAfterFilterTotal += productsAfterFilter
+    serializer = ProductSerializer(productsAfterFilterTotal, many=True)
     return Response(serializer.data)
 
 
