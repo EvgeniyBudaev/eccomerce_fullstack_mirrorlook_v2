@@ -153,7 +153,7 @@ def get_product(request, pk):
 @api_view(['DELETE'])
 @permission_classes([IsAdminUser])
 def deleteProduct(request, pk):
-    product = Product.objects.get(_id=pk)
+    product = Product.objects.get(id=pk)
     product.delete()
     return Response('Product deleted')
 
@@ -164,7 +164,7 @@ def get_products_by_category(request, categorySlug):
     products = Product.objects.all()
     if categorySlug:
         category = Category.objects.get(categorySlug=categorySlug)
-        productsAfterFilter = products.filter(category_id=category.id)
+        productsAfterFilter = products.filter(categoryId=category.id)
     serializer = ProductSerializer(productsAfterFilter, many=True)
     return Response(serializer.data)
 
