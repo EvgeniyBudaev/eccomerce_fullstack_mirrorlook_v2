@@ -5,10 +5,10 @@ import {
     PRODUCT_LIST_SUCCESS
 } from "../../constants/productListConstants"
 
-export const fetchProductsByCatalog = (catalog_slug) => async (dispatch) => {
+export const fetchProductsByCatalog = (catalogSlug) => async (dispatch) => {
     try {
-        dispatch({type: PRODUCT_LIST_REQUEST, catalog_slug })
-        const {data} = await axios.get(`/api/catalog/${catalog_slug}/`)
+        dispatch({type: PRODUCT_LIST_REQUEST, catalogSlug })
+        const {data} = await axios.get(`/api/catalog/${catalogSlug}/`)
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data})
     } catch (error) {
         dispatch({type: PRODUCT_LIST_FAILURE, payload: error.response && error.response.data.detail

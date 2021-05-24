@@ -176,8 +176,8 @@ def get_products_by_catalog(request, catalogSlug):
     products = Product.objects.all()
     if catalogSlug:
         catalog = Catalog.objects.get(catalogSlug=catalogSlug)
-        categoriesAfterFilter = categories.filter(catalog_id=catalog.id)
-        productsAfterFilter = products.filter(categoriesAfterFilter_id=categoriesAfterFilter.id)
+        categoriesAfterFilter = categories.filter(catalogId=catalog.id)
+        productsAfterFilter = products.filter(categoryId=categoriesAfterFilter.id)
     serializer = ProductSerializer(productsAfterFilter, many=True)
     return Response(serializer.data)
 
