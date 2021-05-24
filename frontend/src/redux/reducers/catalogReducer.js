@@ -17,6 +17,7 @@ export const catalogReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
+                loaded: false,
                 error: null
             }
 
@@ -25,7 +26,7 @@ export const catalogReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 loaded: true,
-                catalog: action.payload,
+                catalog: action.payload
             }
 
         case CATALOG_FAILURE:

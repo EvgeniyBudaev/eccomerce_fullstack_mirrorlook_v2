@@ -1,0 +1,21 @@
+.about {
+}
+
+.container {
+  /*ширина контейнера чистая 1170px*/
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 950px) {
+  .inner {
+    flex-direction: column;
+  }
+}

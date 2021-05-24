@@ -1,0 +1,19 @@
+.aboutLeft {
+  padding-right: 15px;
+  & h2 {
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  & p {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 950px) {
+  .aboutLeft {
+    padding-right: 0;
+  }
+}

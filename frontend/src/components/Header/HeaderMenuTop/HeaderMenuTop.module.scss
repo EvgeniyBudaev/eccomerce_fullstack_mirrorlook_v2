@@ -1,0 +1,40 @@
+.menuTop.displayOff {
+  display: none;
+}
+
+.menuTop {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menuTopTel {
+  font-size: 18px;
+  line-height: 1.25;
+  margin: 0 110px;
+  transition: all 0.3s;
+}
+
+.menuTopTel:hover {
+  color: var(--beige);
+}
+
+.isClickedIconSearch {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .menuTopTel {
+    font-size: 12px;
+  }
+  .menuTopButtons svg {
+    height: 15px;
+    width: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menuTopTel {
+    display: none;
+  }
+}

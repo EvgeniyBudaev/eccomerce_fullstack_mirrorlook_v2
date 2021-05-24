@@ -1,0 +1,57 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  z-index: 3;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: var(--white);
+  padding: 15px 0 10px;
+  transition: all 0.5s;
+}
+
+.sticky {
+}
+
+.header.sticky {
+  padding: 15px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.container {
+  /*ширина контейнера чистая 1170px*/
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.innerMenuAndLogo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 29px;
+  transition: all 0.5s;
+}
+
+.logoAndHamburger {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.5s;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    height: 46px;
+    justify-content: flex-start;
+  }
+  .innerMenuAndLogo {
+    align-items: start;
+  }
+}

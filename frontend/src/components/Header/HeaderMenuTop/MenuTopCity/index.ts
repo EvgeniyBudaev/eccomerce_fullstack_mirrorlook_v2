@@ -1,0 +1,1 @@
+export {MenuTopCity as default} from './MenuTopCity'

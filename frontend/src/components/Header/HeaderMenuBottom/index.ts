@@ -1,0 +1,1 @@
+export {HeaderMenuBottom as default} from './HeadermenuBottom'

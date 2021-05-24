@@ -1,0 +1,21 @@
+.menuTopButtons {
+  display: flex;
+  align-items: center;
+}
+
+.menuTopButtons li + li {
+  padding-left: 15px;
+}
+
+@media (max-width: 768px) {
+  .menuTopButtons {
+    position: relative;
+    top: 4px;
+  }
+}
+
+@media (max-width: 500px) {
+  .menuTopButtons {
+    display: none;
+  }
+}

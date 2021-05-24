@@ -1,0 +1,8 @@
+.emptyBlockToHomePage {
+  padding: 200px 0 0;
+  transition: all 0.5s;
+}
+
+.emptyBlockToHomePage.sticky {
+  padding: 10px 0 0;
+}

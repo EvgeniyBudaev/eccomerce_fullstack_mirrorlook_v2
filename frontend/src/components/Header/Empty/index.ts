@@ -1,0 +1,1 @@
+export {EmptyBlockToHomePage as default} from './EmptyBlockToHomePage'

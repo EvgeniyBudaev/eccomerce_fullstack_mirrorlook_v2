@@ -1,0 +1,17 @@
+svg {
+  fill: none;
+}
+
+svg,
+svg path.icon0 {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.icon0 {
+  fill: black;
+}
+
+svg:hover path.icon0 {
+  fill: var(--beige);
+}

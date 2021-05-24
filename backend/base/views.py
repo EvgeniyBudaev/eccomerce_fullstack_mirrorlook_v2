@@ -118,11 +118,11 @@ def get_catalog(request):
 
 
 @api_view(['GET'])
-def get_categories_by_catalog(request, catalog_slug):
+def get_categories_by_catalog(request, catalogSlug):
     catalog = None
     products = Product.objects.all()
-    if catalog_slug:
-        catalog = Catalog.objects.get(catalog_slug=catalog_slug)
+    if catalogSlug:
+        catalog = Catalog.objects.get(catalogSlug=catalogSlug)
         categoriesAfterFilter = products.filter(catalog_id=catalog.id)
     serializer = CategorySerializer(categoriesAfterFilter, many=True)
     return Response(serializer.data)
@@ -159,31 +159,44 @@ def deleteProduct(request, pk):
 
 
 @api_view(['GET'])
-def get_products_by_category(request, category_slug):
+def get_products_by_category(request, categorySlug):
     category = None
     products = Product.objects.all()
-    if category_slug:
-        category = Category.objects.get(category_slug=category_slug)
+    if categorySlug:
+        category = Category.objects.get(categorySlug=categorySlug)
         productsAfterFilter = products.filter(category_id=category.id)
     serializer = ProductSerializer(productsAfterFilter, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
-def get_product_by_category(request, category_slug, product_slug):
+def get_products_by_catalog(request, catalogSlug):
+    catalog = None
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    if catalogSlug:
+        catalog = Catalog.objects.get(catalogSlug=catalogSlug)
+        categoriesAfterFilter = categories.filter(catalog_id=catalog.id)
+        productsAfterFilter = products.filter(categoriesAfterFilter_id=categoriesAfterFilter.id)
+    serializer = ProductSerializer(productsAfterFilter, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_product_by_category(request, categorySlug, productSlug):
     product = None
-    if category_slug and product_slug:
-        product = Product.objects.get(product_slug=product_slug)
+    if categorySlug and productSlug:
+        product = Product.objects.get(productSlug=productSlug)
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
-def create_product_by_category(request, category_slug):
+def create_product_by_category(request, categorySlug):
     user = request.user
     product = None
-    if category_slug:
+    if categorySlug:
         product = Product.objects.create(
             user=user,
             name='Sample Name',
@@ -199,36 +212,36 @@ def create_product_by_category(request, category_slug):
 
 @api_view(['PUT'])
 @permission_classes([IsAdminUser])
-def update_product_by_category(request, category_slug, product_slug):
+def update_product_by_category(request, categorySlug, productSlug):
     product = None
-    if category_slug and product_slug:
+    if categorySlug and productSlug:
         data = request.data
-        product = Product.objects.get(product_slug=product_slug)
+        product = Product.objects.get(productSlug=productSlug)
         product.name = data['name']
-        product.product_slug = data['product_slug']
+        product.productSlug = data['productSlug']
         product.description = data['description']
         product.rating = data['rating']
-        product.num_reviews = data['num_reviews']
+        product.numReviews = data['numReviews']
         product.price = data['price']
-        product.count_in_stock = data['count_in_stock']
+        product.countInStock = data['countInStock']
         product.code = data['code']
-        product.color_frame = data['color_frame']
-        product.color_mirror = data['color_mirror']
-        product.base_mirror = data['base_mirror']
+        product.colorFrame = data['colorFrame']
+        product.colorMirror = data['colorMirror']
+        product.baseMirror = data['baseMirror']
         product.height = data['height']
         product.width = data['width']
         product.weight = data['weight']
-        product.type_of_installation = data['type_of_installation']
-        product.type_of_mounting = data['type_of_mounting']
+        product.typeOfInstallation = data['typeOfInstallation']
+        product.typeOfMounting = data['typeOfMounting']
         product.heightWithoutFrame = data['heightWithoutFrame']
         product.weightWithoutFrame = data['weightWithoutFrame']
         product.faced = data['faced']
         product.form = data['form']
         product.appointment = data['appointment']
-        product.material_mirror = data['material_mirror']
-        product.material_frame = data['material_frame']
-        product.country_brand = data['country_brand']
-        product.country_manufacturer = data['country_manufacturer']
+        product.materialMirror = data['materialMirror']
+        product.materialFrame = data['materialFrame']
+        product.countryBrand = data['countryBrand']
+        product.countryManufacturer = data['countryManufacturer']
         product.manufacturer = data['manufacturer']
     product.save()
     serializer = ProductSerializer(product, many=False)
@@ -237,20 +250,20 @@ def update_product_by_category(request, category_slug, product_slug):
 
 @api_view(['DELETE'])
 @permission_classes([IsAdminUser])
-def delete_product_by_category(request, category_slug, product_slug):
+def delete_product_by_category(request, categorySlug, productSlug):
     product = None
-    if category_slug and product_slug:
-        product = Product.objects.get(product_slug=product_slug)
+    if categorySlug and productSlug:
+        product = Product.objects.get(productSlug=productSlug)
     product.delete()
     return Response('Product deleted')
 
 
 @api_view(['POST'])
-def upload_image_by_category(request, category_slug):
-    if category_slug:
+def upload_image_by_category(request, categorySlug):
+    if categorySlug:
         data = request.data
-        product_slug = data['product_slug']
-        product = Product.objects.get(product_slug=product_slug)
+        productSlug = data['productSlug']
+        product = Product.objects.get(productSlug=productSlug)
         product.image = request.FILES.get('image')
         product.save()
     return Response('Image was uploaded')
@@ -271,10 +284,10 @@ def addOrderItems(request):
 
         order = Order.objects.create(
             user=user,
-            payment_method=data['paymentMethod'],
-            tax_price=data['taxPrice'],
-            shipping_price=data['shippingPrice'],
-            total_price=data['totalPrice']
+            paymentMethod=data['paymentMethod'],
+            taxPrice=data['taxPrice'],
+            shippingPrice=data['shippingPrice'],
+            totalPrice=data['totalPrice']
         )
 
         # (2) Create shipping address
@@ -283,7 +296,7 @@ def addOrderItems(request):
             order=order,
             address=data['shippingAddress']['address'],
             city=data['shippingAddress']['city'],
-            postal_code=data['shippingAddress']['postalCode'],
+            postalCode=data['shippingAddress']['postalCode'],
             country=data['shippingAddress']['country'],
         )
 
@@ -302,7 +315,7 @@ def addOrderItems(request):
 
             # (4) Update stock
 
-            product.count_in_stock -= item.qty
+            product.countInStock -= item.qty
             product.save()
 
         serializer = OrderSerializer(order, many=False)
@@ -359,17 +372,17 @@ def updateOrderToPaid(request, pk):
 def updateOrderToDelivered(request, pk):
     order = Order.objects.get(id=pk)
     order.is_delivered = True
-    order.delivered_at = datetime.now()
+    order.deliveredAt = datetime.now()
     order.save()
     return Response('Order was delivered')
 
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def createProductReview(request, category_slug, product_slug):
-    if category_slug:
+def createProductReview(request, categorySlug, productSlug):
+    if categorySlug:
         user = request.user
-        product = Product.objects.get(product_slug=product_slug)
+        product = Product.objects.get(productSlug=productSlug)
         data = request.data
         alreadyExists = product.review_set.filter(user=user).exists()
         if alreadyExists:
@@ -387,7 +400,7 @@ def createProductReview(request, category_slug, product_slug):
                 comment=data['comment'],
             )
             reviews = product.review_set.all()
-            product.num_reviews = len(reviews)
+            product.numReviews = len(reviews)
             total = 0
             for i in reviews:
                 total += i.rating

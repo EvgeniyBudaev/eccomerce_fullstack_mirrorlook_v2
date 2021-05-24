@@ -1,0 +1,42 @@
+.menuTopCity {
+  font-size: 18px;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menuTopCity:hover {
+  color: var(--beige);
+}
+
+.menuTopCity svg path.icon0 {
+  fill: var(--black);
+  transition: all 0.3s;
+}
+
+.menuTopCity:hover svg path.icon0 {
+  fill: var(--beige);
+}
+
+.isClickedIconSearch {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .menuTopCity {
+    font-size: 12px;
+  }
+  .menuTopCity svg {
+    height: 15px;
+    width: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menuTopCity {
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+.headerMenuBottom {
+  transition: all 0.5s;
+}
+
+.headerMenuBottom nav ul {
+  display: flex;
+}
+
+.headerMenuBottom nav ul li + li {
+  padding-left: 22px;
+}
+
+a {
+  font-size: 18px;
+  line-height: 1.25;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a:not(.active) {
+  transition: all 0.3s;
+}
+
+.active {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  pointer-events: none;
+  cursor: default;
+}
+
+.red {
+  color: var(--red);
+}
+
+a:not(.active):hover {
+  color: var(--beige);
+}
+
+@media (max-width: 1200px) {
+  a.active,
+  a:not(.active) {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerMenuBottom a {
+    display: none;
+  }
+}

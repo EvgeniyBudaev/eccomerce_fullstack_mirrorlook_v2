@@ -1,0 +1,26 @@
+svg {
+  fill: none;
+}
+
+svg,
+svg path.icon0,
+svg path.icon1 {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.icon0 {
+  fill: black;
+}
+
+.icon1 {
+  stroke: black;
+}
+
+svg:hover path.icon0 {
+  fill: var(--beige);
+}
+
+svg:hover path.icon1 {
+  stroke: var(--beige);
+}
